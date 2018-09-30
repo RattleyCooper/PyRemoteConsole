@@ -44,19 +44,23 @@ If you have `script_A.py` and want to be able to connect
 to it while it's running you need to include code from
 the `client.py` file.
 
-    from PyRemoteConsole.client import Client, run_command_client
+```python
+from PyRemoteConsole.client import Client, run_command_client
+```
 
 `run_command_client` should be launched in an additional
 thread.
 
-    from threading import Thread
-    from time import sleep
-    
-    host = '10.0.0.2'
-    port = 12347
-    includes = {'a': 'Some object'}
-    t = Thread(target=run_command_client, args=[host, port], kwargs={'includes': includes})
-    t.start()
+```python
+from threading import Thread
+from time import sleep
+
+host = '10.0.0.2'
+port = 12347
+includes = {'a': 'Some object'}
+t = Thread(target=run_command_client, args=[host, port], kwargs={'includes': includes})
+t.start()
+```
 
 use the `includes` kwarg to pass whatever objects you want to
 have access to remotely. i.e. `includes = {'some_obj': 'obj_val'}`
@@ -65,19 +69,23 @@ have access to remotely. i.e. `includes = {'some_obj': 'obj_val'}`
 thread and also allows you to shut down the `run_command_client`
 loop safely.
 
-    Client.restart = True
-    Client.shutdown = True
-    while Client.alive:
-        sleep(0.05)
-    t.join()
- 
+```python
+Client.restart = True
+Client.shutdown = True
+while Client.alive:
+    sleep(0.05)
+t.join()
+```
+
 To connect to the script running the `run_command_client` thread
 you need to import `run_server` from the `server.py` file.
 
-    from PyRemoteConsole.server import run_server
-    
-    host = 10.0.0.2
-    port = 12347
-    run_server(host, port)
+```python
+from PyRemoteConsole.server import run_server
+
+host = 10.0.0.2
+port = 12347
+run_server(host, port)
+```
 
 
