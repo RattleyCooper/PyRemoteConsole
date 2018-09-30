@@ -1,5 +1,6 @@
 .remote
 .idea*
+.idea
 __pycache*
 *.pyc
 .DS_Store
