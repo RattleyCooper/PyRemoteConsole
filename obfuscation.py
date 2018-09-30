@@ -148,7 +148,7 @@ class Encryptor(object):
 if __name__ == '__main__':
     def main():
         print('Generating key...')
-        s = Encryptor().load_key_file()
+        s = Encryptor().save_key_file()
         print('Key generated.\nValidating key for prosperity...')
 
         m = """aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"""
@@ -162,7 +162,6 @@ if __name__ == '__main__':
             print('\ndecrypted:', de)
 
             raise Exception('Decrypted text did not match the encrypted string.  Something went wrong.')
-        print('\nencrypted:', en)
 
         print('Key is valid.  Encryptor working successfully!')
 
