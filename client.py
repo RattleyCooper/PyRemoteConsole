@@ -69,13 +69,14 @@ class Client(object):
     bot = None
 
 
-def main_client_loop(client):
+def main_client_loop(client, includes=None):
     _locals = {
         'Client': Client,
         'Bot': Client.bot,
         '__file__': __file__,
         '__name__': __name__,
-        '__package__': __package__
+        '__package__': __package__,
+        'includes': includes
     }
 
     # Create shortcuts for plugins.
@@ -117,7 +118,7 @@ def main_client_loop(client):
         # client.send_data('...')
 
 
-def run_command_client(host, port):
+def run_command_client(host, port, includes=None):
     PrintQueue.push(Msg('Starting command client...'))
     client = None
     while not Client.shutdown:
@@ -127,7 +128,7 @@ def run_command_client(host, port):
 
         client = HeaderClient(host, port, echo=False)
         client.connect_to_server()
-        main_client_loop(client)
+        main_client_loop(client, includes=includes)
 
     if client:
         client.sock.shutdown(1)

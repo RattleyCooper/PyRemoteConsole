@@ -1,5 +1,4 @@
 from random import SystemRandom
-from time import time
 
 
 class Encryptor(object):
@@ -147,45 +146,24 @@ class Encryptor(object):
 
 
 if __name__ == '__main__':
-    s = Encryptor().load_key_file()
+    def main():
+        print('Generating key...')
+        s = Encryptor().load_key_file()
+        print('Key generated.\nValidating key for prosperity...')
 
-    print(''.join(s.characters))
-    o = """A super awesome possum, gathered cherry blossoms, while in a rush he lost them.
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-A super awesome possum, gathered cherry blossoms, while in a rush he lost them. 
-"""
+        m = """aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"""
+        en = s.encrypt(m)
+        de = s.decrypt(en)
 
-    print('\nstring: {}'.format(len(o)), o)
-    tstart = time()
-    o = s.encrypt(o)
-    print('utf-8:', o.encode('utf-8'))
-    end = time()
-    entime = end - tstart
-    print('\nencoded:', o)
-    tstart = time()
-    o = s.decrypt(o)
-    end = time()
-    untime = end - tstart
-    print('\ndecoded:', o)
+        if de != m:
+            print('key:', ''.join(s.characters))
+            print('\nstring: {}'.format(len(m)), m)
+            print('\nencrypted:', en)
+            print('\ndecrypted:', de)
 
-    print(entime)
-    print(untime)
+            raise Exception('Decrypted text did not match the encrypted string.  Something went wrong.')
+        print('\nencrypted:', en)
+
+        print('Key is valid.  Encryptor working successfully!')
+
+    main()

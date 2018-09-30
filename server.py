@@ -40,7 +40,7 @@ def listener(sock):
     Server.alive = False
 
 
-def setup(host, port):
+def run_server(host, port):
     sock = socket.socket()
     sock.setblocking(True)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -86,6 +86,7 @@ def setup(host, port):
     thread.join()
 
 
-config = ConfigParser()
-config.read('{}/.env'.format(getcwd()))
-setup(config['Console']['Host'], int(config['Console']['Port']))
+if __name__ == '__main__':
+    config = ConfigParser()
+    config.read('{}/.env'.format(getcwd()))
+    run_server(config['Console']['Host'], int(config['Console']['Port']))
