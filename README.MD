@@ -5,6 +5,13 @@ python scripts remotely.  It contains a pure-python
 "encryption" scheme that is used to *obfuscate* 
 communication between the client and the server.
 
+### Install
+
+    pip install PyRemoteConsole
+
+
+### Setup & Usage
+
 The key file that comes with PyRemoteConsole will work
 but you should generate a new key by running the 
 `obfuscation.py` file.  You should see the following 
@@ -30,6 +37,8 @@ cipher-text:
 Anything sent and received while using the built-in 
 encryption should be considered un-readable, but not 
 necessarily secure.
+
+### Client & Server
 
 If you have `script_A.py` and want to be able to connect
 to it while it's running you need to include code from
